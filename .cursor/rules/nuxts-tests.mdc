@@ -1,0 +1,46 @@
+---
+alwaysApply: false
+---
+rule nuxt-tests {
+  appliesTo: always
+
+  description: |
+    Enforces testing best practices for Nuxt 3 applications using tools like Vitest or Jest. Encourages proper coverage, separation of concerns, and maintainable test design.
+
+  goals:
+    - Ensure every composable and service function has a corresponding test.
+    - Encourage readable, fast, and isolated unit tests.
+    - Separate unit tests and end-to-end tests into structured folders.
+    - Avoid mocking too deeply; test business logic in isolation.
+
+  constraints:
+    - All composables and utilities must have a test file with the same name.
+    - Tests should be colocated in a `/tests/` directory, mirroring the app structure.
+    - Use `describe`, `it`, and `beforeEach` blocks consistently.
+    - Prefer using Vitest or Jest as the primary test runner.
+    - Tests should not depend on Vue or Nuxt global state unless explicitly testing integration.
+    - Mock external API calls (like `useFetch`) when unit testing.
+    - Aim for >80% test coverage on business logic, composables, and utilities.
+
+  examples:
+    good:
+      describe('useProfile', () => {
+        it('fetches profile data', async () => {
+          vi.mock('useFetch', () => ({ data: { name: 'Alice' } }))
+          const { data } = await useProfile('123')
+          expect(data.name).toBe('Alice')
+        })
+      })
+
+    bad:
+      test('profile works', async () => {
+        const res = await useProfile('123')
+        expect(res).toBeTruthy()
+      })
+
+  actions:
+    - Flag any utility or composable without corresponding tests.
+    - Recommend test colocation under `/tests/composables/`, `/tests/utils/`, etc.
+    - Suggest mocking API/network calls.
+    - Encourage breaking long tests into multiple `it` blocks.
+}

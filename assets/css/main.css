@@ -1,0 +1,130 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom base styles */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  
+  body {
+    @apply bg-[#0f172a] text-text font-inter;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  }
+  
+  /* Inter font configuration from rsms.me */
+  :root {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  }
+  
+  @supports (font-variation-settings: normal) {
+    :root { 
+      font-family: InterVariable, sans-serif; 
+    }
+  }
+  
+  /* Custom font classes */
+  .font-inter {
+    font-family: Inter, sans-serif;
+    font-feature-settings: 'liga' 1, 'calt' 1;
+  }
+  
+  @supports (font-variation-settings: normal) {
+    .font-inter {
+      font-family: InterVariable, sans-serif;
+    }
+  }
+}
+
+/* Custom component styles */
+@layer components {
+  .btn-primary {
+    @apply px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+  }
+  
+  .btn-secondary {
+    @apply px-6 py-3 bg-gray-200 text-text font-medium rounded-lg hover:bg-gray-300 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-offset-2;
+  }
+  
+  .section-padding {
+    @apply py-10 w-full;
+  }
+  
+  .container-custom {
+    @apply max-w-7xl mx-auto;
+  }
+  
+  .gradient-text {
+    @apply bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent;
+  }
+}
+
+/* Custom utilities */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+} 
+
+.text-secondary {
+  opacity: 0.8;
+}
+
+/* Experience section hover effects */
+.group:hover .group\/item {
+  color: rgb(100 116 139) !important;
+}
+
+/* Override for hovered item - higher specificity */
+.group\/item:hover,
+.group\/item:hover p,
+.group\/item:hover span,
+.group\/item:hover div {
+  color: #fff !important;
+}
+
+.group\/item:hover .text-primary {
+  color: #FFC857 !important;
+}
+
+/* Ensure all text elements in hovered item get the correct color */
+.group\/item:hover .text-secondary,
+.group\/item:hover .text-text-muted {
+  color: rgb(203 209 235) !important;
+}
+
+/* Cursor glow enhancements */
+.cursor-glow {
+  pointer-events: none;
+  mix-blend-mode: screen;
+  filter: blur(2px);
+  opacity: 0.6;
+  border-radius: 50%;
+}
+
+/* Smooth cursor glow animation */
+@keyframes cursorGlow {
+  0% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.7;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0.4;
+  }
+}

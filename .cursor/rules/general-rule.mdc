@@ -1,0 +1,62 @@
+---
+alwaysApply: true
+---
+rule nuxt-best-practices {
+  appliesTo: always
+
+  description: |
+    Enforce Nuxt.js and Vue 3 coding standards that prioritize maintainability, clarity, and scalable structure. These rules promote reusability, reduce repetition, enforce documentation, and keep the project well-organized.
+
+  goals:
+    - Keep functions concise and easy to test.
+    - Use proper documentation to enhance readability.
+    - Encourage reusable component-based architecture.
+    - Prevent logic duplication across the application.
+    - Organize directories following modular principles.
+
+  constraints:
+    - Every function (including `setup()` and composables) must include a JSDoc-style doc block describing purpose, parameters, and return types.
+    - Any reusable UI or logic must be extracted into a component (`/components/`) or composable (`/composables/`) respectively.
+    - Avoid writing functions with more than one responsibility (single responsibility principle).
+    - Do not repeat logic: extract shared logic into helpers or composables.
+    - File structure must follow Nuxt 3 conventions, grouping related concerns (pages, components, composables, layouts, middleware, etc.).
+    - Never place global business logic directly in `.vue` files — use composables or services.
+    - Use named exports for all composables and helper functions.
+    - In a Vue SFC, keep the `<script>`, `<template>`, and `<style>` sections clean, scoped, and minimal.
+
+  examples:
+    good:
+      /**
+       * Fetches user profile from API and returns user data.
+       * @param {string} userId - ID of the user
+       * @returns {Promise<Object>} User data
+       */
+      async function fetchUserProfile(userId) {
+        const { data } = await useFetch(`/api/users/${userId}`)
+        return data.value
+      }
+
+    bad:
+      async function getUser(x) {
+        return await useFetch(`/api/users/${x}`)
+      }
+
+    good (composable):
+      // composables/useProfile.ts
+      export function useProfile(userId: string) {
+        const { data, error } = useFetch(`/api/users/${userId}`)
+        return { data, error }
+      }
+
+    bad (repetition):
+      // Called in two different pages without abstraction
+      const { data } = await useFetch(`/api/users/${userId}`)
+      const { data } = await useFetch(`/api/users/${userId}`)
+
+  actions:
+    - Flag any `.vue` file function without a doc block.
+    - Suggest creating a component if more than 2 `.vue` files use similar UI.
+    - Recommend using a composable for logic shared between multiple views.
+    - Highlight functions longer than ~25 lines for potential refactoring.
+    - Validate directory paths follow Nuxt 3 conventions.
+}
