@@ -320,6 +320,21 @@ import CursorGlow from '~/components/CursorGlow.vue'
 
 const isScrolled = ref(false)
 const activeSection = ref('#about')
+/**
+ * Single-page portfolio component inspired by Brittany Chiang's design
+ * Features smooth scrolling sections for About, Experience, Projects, and Contact
+ */
+
+// Page metadata
+useHead({
+  title: 'Jerome Louie De Vera',
+  meta: [
+    { name: 'description', content: 'Full-stack developer specializing in modern web applications, UI/UX design, and user-centered solutions.' }
+  ],
+  link: [
+    { rel: 'icon', type: 'image/png', href: '/logo.png' }
+  ]
+})
 
 // Reactive data for scroll to top functionality
 const showScrollTop = ref(false)
