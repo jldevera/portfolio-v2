@@ -20,14 +20,14 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/portfolio-v2/',
     head: {
-      title: 'JL Portfolio',
+      title: 'Jerome Louie De Vera',
       meta: [
         { charset: 'utf-8' },
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-        { name: 'description', content: 'Personal developer portfolio showcasing projects and skills' }
+        { name: 'description', content: 'Personal portfolio showcasing projects and skills' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
         { rel: 'preconnect', href: 'https://rsms.me' },
         { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' }
       ]
