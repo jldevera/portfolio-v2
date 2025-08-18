@@ -3,6 +3,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2025-07-15',
   devtools: { enabled: false },
   
+  // Enable static site generation
+  ssr: true,
+  nitro: {
+    prerender: {
+      routes: ['/']
+    }
+  },
+  
   // Modules
   modules: [
     '@nuxtjs/tailwindcss'
@@ -27,7 +35,9 @@ export default defineNuxtConfig({
         { name: 'description', content: 'Personal portfolio showcasing projects and skills' }
       ],
       link: [
-        { rel: 'icon', type: 'image/x-icon', href: '/logo.ico' },
+        { rel: 'icon', type: 'image/x-icon', href: '/portfolio-v2/favicon.ico' },
+        { rel: 'icon', type: 'image/png', href: '/portfolio-v2/logo.png' },
+        { rel: 'apple-touch-icon', href: '/portfolio-v2/logo.png' },
         { rel: 'preconnect', href: 'https://rsms.me' },
         { rel: 'stylesheet', href: 'https://rsms.me/inter/inter.css' }
       ]

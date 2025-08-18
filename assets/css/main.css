@@ -113,6 +113,11 @@
   border-radius: 50%;
 }
 
+/* Experience section hover effects */
+.exp:hover .arrow {
+  transform: translate(10px, -10px);
+}
+
 /* Smooth cursor glow animation */
 @keyframes cursorGlow {
   0% {
