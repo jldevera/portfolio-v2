@@ -1,0 +1,1 @@
+import{_ as s}from"./DlAUqK2U.js";import{x as t,y as a,z as n,Y as o}from"./D5lQRtiW.js";const r={},c={class:"mx-auto min-h-screen max-w-screen-xl px-6 py-12 font-sans md:px-12 md:py-16 lg:py-0"};function l(e,m){return a(),t("div",c,[n("main",null,[o(e.$slots,"default")])])}const f=s(r,[["render",l]]);export{f as default};
